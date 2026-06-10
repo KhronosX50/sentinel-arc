@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>About — SentinelArc</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.page-hero{padding:5rem 3rem 4rem;border-bottom:1px solid var(--border-c);}
+.page-hero-inner{max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;letter-spacing:.02em;}
+.page-subtitle{font-family:'Courier Prime',monospace;font-size:1rem;line-height:1.85;color:var(--dim);max-width:580px;margin-top:1.5rem;}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.story-text p{font-family:'Courier Prime',monospace;font-size:.92rem;line-height:1.9;color:rgba(232,244,248,.7);margin-bottom:1.4rem;}
+.story-text p::before{content:'// ';color:var(--red);}
+.story-timeline{display:flex;flex-direction:column;gap:0;}
+.timeline-item{display:grid;grid-template-columns:80px 1fr;gap:1.5rem;padding:1.5rem 0;border-bottom:1px solid var(--border-c);}
+.timeline-item:first-child{border-top:1px solid var(--border-c);}
+.timeline-year{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:700;color:var(--red);text-shadow:var(--glow-r);padding-top:.2rem;}
+.timeline-content{}
+.timeline-title{font-family:'Orbitron',monospace;font-size:.72rem;font-weight:600;letter-spacing:.08em;color:var(--white);margin-bottom:.4rem;}
+.timeline-desc{font-size:.7rem;line-height:1.75;color:var(--dim);}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border-c);border:1px solid var(--border-c);}
+.stat-card{background:var(--surface);padding:2.5rem 2rem;text-align:center;transition:background .3s;}
+.stat-card:hover{background:rgba(0,229,255,.03);}
+.stat-icon{font-family:'Orbitron',monospace;font-size:1rem;color:var(--red);letter-spacing:.1em;margin-bottom:.8rem;}
+.stat-value{font-family:'Orbitron',monospace;font-size:2.8rem;font-weight:900;line-height:1;color:var(--cyan);text-shadow:var(--glow-c);}
+.stat-label{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-top:.5rem;}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.team-card{background:var(--surface);border:1px solid var(--border-c);overflow:hidden;transition:border-color .3s,transform .3s;}
+.team-card:hover{border-color:var(--border-r);transform:translateY(-4px);}
+.team-avatar{width:100%;aspect-ratio:1/1;background:var(--panel);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;border-bottom:1px solid var(--border-c);}
+.team-avatar-inner{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--red);text-shadow:var(--glow-r);opacity:.4;}
+.team-avatar-scan{position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--cyan),transparent);animation:avatarScan 3s linear infinite;}
+@keyframes avatarScan{from{top:-2px;}to{top:100%;}}
+.team-info{padding:1.5rem;}
+.team-name{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--white);margin-bottom:.3rem;letter-spacing:.05em;}
+.team-role{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--glow-c);margin-bottom:.7rem;}
+.team-bio{font-size:.68rem;line-height:1.75;color:var(--dim);}
+.team-certs{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;}
+.cert{font-size:.55rem;letter-spacing:.1em;padding:.2rem .5rem;border:1px solid var(--border-r);color:var(--red);}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.cert-card{background:var(--surface);border:1px solid var(--border-c);padding:1.5rem;display:flex;align-items:center;gap:1.2rem;transition:border-color .3s;}
+.cert-card:hover{border-color:rgba(0,229,255,.4);}
+.cert-badge{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:900;color:var(--cyan);text-shadow:var(--glow-c);min-width:60px;text-align:center;}
+.cert-info{}
+.cert-name{font-family:'Orbitron',monospace;font-size:.68rem;font-weight:600;color:var(--white);margin-bottom:.2rem;}
+.cert-body{font-size:.62rem;color:var(--dim);line-height:1.6;}
+
+@media(max-width:900px){
+  .page-hero{padding:4rem 1.5rem 3rem;}
+  .story-grid{grid-template-columns:1fr;gap:3rem;}
+  .stats-grid{grid-template-columns:1fr 1fr;}
+  .team-grid{grid-template-columns:1fr 1fr;}
+  .certs-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="ticker"></div>
+<div id="cursor"><div id="cursor-h"></div><div id="cursor-v"></div></div>
+
+<nav>
+  <a class="nav-logo" href="index.html">SENTINEL<span>ARC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Case Studies</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">&gt; Get Protected</a>
+  <button class="nav-toggle">[MENU]</button>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">About SentinelArc</p>
+      <h1 class="page-title">BUILT BY <span class="accent-r">OPERATORS.</span><br>DRIVEN BY <span class="accent-c">MISSION.</span></h1>
+      <p class="page-subtitle">SentinelArc was founded by former intelligence operatives and elite offensive security researchers who grew tired of watching organizations lose to threats they could have prevented.</p>
+    </div>
+  </div>
+
+  <!-- STORY -->
+  <div class="section">
+    <p class="eyebrow">Our Story</p>
+    <h2 class="section-h">FROM THE <span class="accent-r">FRONTLINES</span> TO THE ENTERPRISE</h2>
+    <div class="story-grid">
+      <div class="story-text reveal">
+        <p>SentinelArc was born in 2019 out of frustration. Our founders — former NSA analysts, military cyber operators, and elite red teamers — watched from the inside as critical infrastructure fell to attacks that should have been stopped at the perimeter.</p>
+        <p>The problem wasn't technology. It was strategy. Most security vendors sell tools and dashboards. SentinelArc sells outcomes. We embed with your organization, understand your crown jewels, model your specific threat landscape, and build a defensive posture that holds.</p>
+        <p>In six years we've grown from a 4-person boutique to a 120-analyst operation spanning three continents, protecting financial institutions, healthcare networks, defense contractors, and critical energy infrastructure across 34 countries.</p>
+        <p>Our philosophy is simple: the best defense is a relentless offense. We think like the adversary, because most of us were the adversary — in state-sponsored programs, elite military units, and private sector red teams that tested the world's most hardened systems.</p>
+      </div>
+      <div class="story-timeline reveal">
+        <div class="timeline-item">
+          <div class="timeline-year">2019</div>
+          <div class="timeline-content">
+            <div class="timeline-title">FOUNDED</div>
+            <p class="timeline-desc">Four former intelligence operatives launch SentinelArc in Washington D.C. with a mandate to bring offensive-grade thinking to enterprise defense.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2020</div>
+          <div class="timeline-content">
+            <div class="timeline-title">FIRST MAJOR CONTRACT</div>
+            <p class="timeline-desc">Retained by a Fortune 100 financial institution following a breach at a competitor. Zero incidents recorded in the following 18 months.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022</div>
+          <div class="timeline-content">
+            <div class="timeline-title">SOC LAUNCH</div>
+            <p class="timeline-desc">Opened our 24/7 Security Operations Center, expanding from advisory to active monitoring and response for 40+ enterprise clients.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2024</div>
+          <div class="timeline-content">
+            <div class="timeline-title">GLOBAL EXPANSION</div>
+            <p class="timeline-desc">Established analyst hubs in London and Singapore to provide follow-the-sun coverage across all time zones.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026</div>
+          <div class="timeline-content">
+            <div class="timeline-title">TODAY</div>
+            <p class="timeline-desc">120+ analysts. 34 countries. 99.97% threat detection rate. Zero confirmed breaches across our monitored client portfolio.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- STATS -->
+  <div class="section-full">
+    <div class="section-inner">
+      <p class="eyebrow">By The Numbers</p>
+      <h2 class="section-h">THE <span class="accent-c">RECORD</span> SPEAKS</h2>
+      <div class="stats-grid">
+        <div class="stat-card reveal">
+          <div class="stat-icon">[CLIENTS]</div>
+          <div class="stat-value accent-c" data-target="200" data-suffix="+">0</div>
+          <div class="stat-label">Enterprise Clients</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon">[THREATS]</div>
+          <div class="stat-value accent-r" data-target="4200000" data-suffix="">0</div>
+          <div class="stat-label">Threats Neutralized</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon">[ANALYSTS]</div>
+          <div class="stat-value" data-target="120" data-suffix="+">0</div>
+          <div class="stat-label">Certified Analysts</div>
+        </div>
+        <div class="stat-card reveal">
+          <div class="stat-icon">[UPTIME]</div>
+          <div class="stat-value accent-g" data-target="99" data-suffix=".97%">0</div>
+          <div class="stat-label">Detection Rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- TEAM -->
+  <div class="section">
+    <p class="eyebrow">Leadership</p>
+    <h2 class="section-h">THE <span class="accent-r">OPERATORS</span> BEHIND THE MISSION</h2>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar"><div class="team-avatar-inner">MR</div><div class="team-avatar-scan"></div></div>
+        <div class="team-info">
+          <div class="team-name">MARCUS REED</div>
+          <div class="team-role">CEO &amp; Co-Founder</div>
+          <p class="team-bio">Former NSA Tailored Access Operations analyst. 14 years in offensive cyber operations before founding SentinelArc.</p>
+          <div class="team-certs"><span class="cert">OSCP</span><span class="cert">CISSP</span><span class="cert">CEH</span></div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar"><div class="team-avatar-inner">DK</div><div class="team-avatar-scan"></div></div>
+        <div class="team-info">
+          <div class="team-name">DR. DIANA KIM</div>
+          <div class="team-role">CTO &amp; Co-Founder</div>
+          <p class="team-bio">PhD in Computer Security from MIT. Former DARPA researcher specializing in zero-day vulnerability discovery and exploit development.</p>
+          <div class="team-certs"><span class="cert">OSED</span><span class="cert">OSCE3</span></div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar"><div class="team-avatar-inner">JO</div><div class="team-avatar-scan"></div></div>
+        <div class="team-info">
+          <div class="team-name">JAMES OKAFOR</div>
+          <div class="team-role">Head of Red Team</div>
+          <p class="team-bio">10-year veteran of elite military cyber units. Led red team engagements against NATO critical infrastructure and Fortune 50 enterprises.</p>
+          <div class="team-certs"><span class="cert">CRTO</span><span class="cert">OSCP</span></div>
+        </div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar"><div class="team-avatar-inner">SV</div><div class="team-avatar-scan"></div></div>
+        <div class="team-info">
+          <div class="team-name">SARA VASQUEZ</div>
+          <div class="team-role">Director of Compliance</div>
+          <p class="team-bio">Former Big 4 cybersecurity auditor with 12 years helping global enterprises achieve and maintain ISO 27001, SOC 2, and HIPAA compliance.</p>
+          <div class="team-certs"><span class="cert">CISA</span><span class="cert">CRISC</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- CERTS -->
+  <div class="section">
+    <p class="eyebrow">Certifications</p>
+    <h2 class="section-h">RECOGNIZED BY THE <span class="accent-c">INDUSTRY</span></h2>
+    <div class="certs-grid">
+      <div class="cert-card reveal"><div class="cert-badge">ISO</div><div class="cert-info"><div class="cert-name">ISO 27001 CERTIFIED</div><p class="cert-body">Internationally recognized standard for information security management systems.</p></div></div>
+      <div class="cert-card reveal"><div class="cert-badge">SOC2</div><div class="cert-info"><div class="cert-name">SOC 2 TYPE II</div><p class="cert-body">Independently audited controls for security, availability, and confidentiality.</p></div></div>
+      <div class="cert-card reveal"><div class="cert-badge">CREST</div><div class="cert-info"><div class="cert-name">CREST ACCREDITED</div><p class="cert-body">Globally recognized accreditation for penetration testing and incident response.</p></div></div>
+      <div class="cert-card reveal"><div class="cert-badge">FedRAMP</div><div class="cert-info"><div class="cert-name">FedRAMP AUTHORIZED</div><p class="cert-body">Authorized to operate within US federal government cloud environments.</p></div></div>
+      <div class="cert-card reveal"><div class="cert-badge">PCI</div><div class="cert-info"><div class="cert-name">PCI DSS QSA</div><p class="cert-body">Qualified Security Assessor certified for Payment Card Industry compliance audits.</p></div></div>
+      <div class="cert-card reveal"><div class="cert-badge">MSSP</div><div class="cert-info"><div class="cert-name">TOP 250 MSSP</div><p class="cert-body">Recognized among the top 250 Managed Security Service Providers globally for 2025.</p></div></div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div>
+    <div class="footer-brand">SENTINEL<span>ARC</span></div>
+    <p class="footer-tagline">Enterprise cybersecurity operations.<br>Threat detection, response, and resilience<br>for organizations that cannot afford to fail.</p>
+  </div>
+  <div>
+    <div class="footer-col-title">Navigation</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="projects.html">Case Studies</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-title">Contact</div>
+    <ul class="footer-links">
+      <li><a href="mailto:ops@sentinelarc.io">ops@sentinelarc.io</a></li>
+      <li><a href="#">+1 (800) SENTINEL</a></li>
+      <li><a href="#">Emergency Hotline: 24/7</a></li>
+    </ul>
+  </div>
+</footer>
+<div class="footer-bottom">
+  <p>© 2026 SentinelArc Security Inc. All rights reserved.</p>
+  <p>Built by <a href="https://identharos.gumroad.com">Tharos Digital Studio</a></p>
+</div>
+
+<script src="_shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Services — SentinelArc</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.page-hero{padding:5rem 3rem 4rem;border-bottom:1px solid var(--border-c);}
+.page-hero-inner{max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;}
+.page-subtitle{font-family:'Courier Prime',monospace;font-size:1rem;line-height:1.85;color:var(--dim);max-width:580px;margin-top:1.5rem;}
+
+.services-list{display:flex;flex-direction:column;gap:1px;background:var(--border-c);}
+.service-full{background:var(--surface);display:grid;grid-template-columns:280px 1fr;gap:0;transition:background .3s;}
+.service-full:hover{background:rgba(8,13,18,.95);}
+.service-sidebar{padding:3rem 2.5rem;border-right:1px solid var(--border-c);display:flex;flex-direction:column;gap:1rem;}
+.service-code{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--red);text-shadow:var(--glow-r);opacity:.35;line-height:1;}
+.service-name{font-family:'Orbitron',monospace;font-size:.85rem;font-weight:700;letter-spacing:.06em;color:var(--white);}
+.service-tag{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--glow-c);}
+.service-body{padding:3rem 3rem;}
+.service-desc{font-family:'Courier Prime',monospace;font-size:.9rem;line-height:1.9;color:rgba(232,244,248,.7);margin-bottom:2rem;}
+.service-features{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-bottom:2rem;}
+.feature-item{display:flex;align-items:flex-start;gap:.7rem;font-size:.7rem;line-height:1.6;color:var(--dim);}
+.feature-item::before{content:'[+]';color:var(--green);text-shadow:var(--glow-g);flex-shrink:0;font-size:.65rem;}
+.service-tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.stag{font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .7rem;border:1px solid var(--border-r);color:var(--red);transition:all .2s;}
+.stag:hover{background:rgba(255,31,31,.1);}
+
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.pricing-card{background:var(--surface);border:1px solid var(--border-c);padding:2.5rem 2rem;position:relative;transition:border-color .3s,transform .3s;}
+.pricing-card:hover{border-color:rgba(0,229,255,.4);transform:translateY(-4px);}
+.pricing-card.featured{border-color:var(--red);box-shadow:var(--glow-r);}
+.pricing-card.featured::before{content:'RECOMMENDED';position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-size:.55rem;letter-spacing:.2em;background:var(--red);color:#000;padding:.25rem .8rem;font-family:'Orbitron',monospace;font-weight:700;}
+.pricing-tier{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:.8rem;}
+.pricing-name{font-family:'Orbitron',monospace;font-size:1.2rem;font-weight:700;color:var(--white);margin-bottom:1.5rem;}
+.pricing-price{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;color:var(--red);text-shadow:var(--glow-r);line-height:1;margin-bottom:.3rem;}
+.pricing-period{font-size:.62rem;letter-spacing:.15em;color:var(--dim);margin-bottom:2rem;}
+.pricing-features{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-bottom:2rem;}
+.pricing-features li{font-size:.7rem;color:var(--dim);display:flex;gap:.6rem;}
+.pricing-features li::before{content:'>';color:var(--green);flex-shrink:0;}
+.pricing-features li.off{opacity:.4;}
+.pricing-features li.off::before{content:'x';color:var(--red);}
+
+@media(max-width:900px){
+  .page-hero{padding:4rem 1.5rem 3rem;}
+  .service-full{grid-template-columns:1fr;}
+  .service-sidebar{border-right:none;border-bottom:1px solid var(--border-c);padding:2rem 1.5rem;}
+  .service-body{padding:2rem 1.5rem;}
+  .service-features{grid-template-columns:1fr;}
+  .pricing-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="ticker"></div>
+<div id="cursor"><div id="cursor-h"></div><div id="cursor-v"></div></div>
+<nav>
+  <a class="nav-logo" href="index.html">SENTINEL<span>ARC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html" class="active">Services</a></li>
+    <li><a href="projects.html">Case Studies</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">&gt; Get Protected</a>
+  <button class="nav-toggle">[MENU]</button>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Our Services</p>
+      <h1 class="page-title">THE FULL <span class="accent-r">ARSENAL.</span><br>DEPLOYED <span class="accent-c">FOR YOU.</span></h1>
+      <p class="page-subtitle">Six battle-tested service lines built for enterprises operating in contested digital environments. Every engagement is scoped to your threat model — not a generic checklist.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="services-list">
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">01</div>
+          <div class="service-name">PENETRATION TESTING</div>
+          <div class="service-tag">Offensive Security</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Our penetration testing practice goes far beyond automated scanning. We deploy seasoned offensive operators who manually chain vulnerabilities across your network, applications, and people to demonstrate real business impact — not just a CVSS score.</p>
+          <div class="service-features">
+            <div class="feature-item">External and internal network penetration testing</div>
+            <div class="feature-item">Web application and API security testing</div>
+            <div class="feature-item">Mobile application security assessment</div>
+            <div class="feature-item">Social engineering and phishing simulation</div>
+            <div class="feature-item">Physical security bypass testing</div>
+            <div class="feature-item">Cloud infrastructure security review</div>
+          </div>
+          <div class="service-tags"><span class="stag">Black Box</span><span class="stag">White Box</span><span class="stag">Grey Box</span><span class="stag">OWASP</span><span class="stag">PTES</span></div>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">02</div>
+          <div class="service-name">RED TEAM OPERATIONS</div>
+          <div class="service-tag">Adversary Emulation</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Red team engagements simulate the full kill chain of sophisticated threat actors — from initial access through lateral movement, persistence, and objective execution. We test not just your technology, but your people and processes under fire.</p>
+          <div class="service-features">
+            <div class="feature-item">APT-style multi-stage attack campaigns</div>
+            <div class="feature-item">MITRE ATT&CK framework mapping</div>
+            <div class="feature-item">Custom malware and implant development</div>
+            <div class="feature-item">Command and control infrastructure setup</div>
+            <div class="feature-item">Detection and response gap analysis</div>
+            <div class="feature-item">Full debrief and purple team workshop</div>
+          </div>
+          <div class="service-tags"><span class="stag">TIBER-EU</span><span class="stag">ATT&CK</span><span class="stag">C2 Infra</span><span class="stag">OPSEC</span></div>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">03</div>
+          <div class="service-name">SOC AS A SERVICE</div>
+          <div class="service-tag">Managed Detection &amp; Response</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Our 24/7 Security Operations Center provides continuous monitoring, threat detection, and active response for your entire environment. We integrate with your existing tools or deploy our own sensor stack — delivering enterprise-grade SOC capability without the overhead of building one in-house.</p>
+          <div class="service-features">
+            <div class="feature-item">24/7/365 monitoring by certified analysts</div>
+            <div class="feature-item">SIEM deployment, tuning, and management</div>
+            <div class="feature-item">EDR/XDR management and response</div>
+            <div class="feature-item">Threat hunting and anomaly detection</div>
+            <div class="feature-item">Sub-15-minute alert triage SLA</div>
+            <div class="feature-item">Monthly threat landscape reporting</div>
+          </div>
+          <div class="service-tags"><span class="stag">SIEM</span><span class="stag">EDR</span><span class="stag">XDR</span><span class="stag">SOAR</span><span class="stag">MDR</span></div>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">04</div>
+          <div class="service-name">THREAT INTELLIGENCE</div>
+          <div class="service-tag">Strategic &amp; Tactical Intel</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Intelligence is the foundation of every effective security program. Our threat intelligence practice delivers actionable, contextualized insights from dark web monitoring, adversary tracking, and proprietary global sensor networks — so you know what's coming before it arrives.</p>
+          <div class="service-features">
+            <div class="feature-item">Dark web and criminal forum monitoring</div>
+            <div class="feature-item">APT group tracking and campaign analysis</div>
+            <div class="feature-item">Brand and credential exposure monitoring</div>
+            <div class="feature-item">Industry-specific threat landscape reports</div>
+            <div class="feature-item">STIX/TAXII threat feed integration</div>
+            <div class="feature-item">Executive-level threat briefings</div>
+          </div>
+          <div class="service-tags"><span class="stag">OSINT</span><span class="stag">Dark Web</span><span class="stag">APT Track</span><span class="stag">STIX</span></div>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">05</div>
+          <div class="service-name">COMPLIANCE AUDITING</div>
+          <div class="service-tag">Risk &amp; Regulatory</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">Compliance without security is theater. Our auditors bring both regulatory expertise and operational security knowledge to every assessment — ensuring your compliance program actually reduces risk rather than just producing paperwork for regulators.</p>
+          <div class="service-features">
+            <div class="feature-item">ISO 27001 gap analysis and certification support</div>
+            <div class="feature-item">SOC 2 Type I and Type II readiness</div>
+            <div class="feature-item">GDPR and data protection impact assessments</div>
+            <div class="feature-item">HIPAA security rule compliance review</div>
+            <div class="feature-item">PCI DSS QSA assessment services</div>
+            <div class="feature-item">Remediation roadmap and policy development</div>
+          </div>
+          <div class="service-tags"><span class="stag">ISO 27001</span><span class="stag">SOC 2</span><span class="stag">GDPR</span><span class="stag">HIPAA</span><span class="stag">PCI DSS</span></div>
+        </div>
+      </div>
+
+      <div class="service-full reveal">
+        <div class="service-sidebar">
+          <div class="service-code">06</div>
+          <div class="service-name">INCIDENT RESPONSE</div>
+          <div class="service-tag">Crisis &amp; Forensics</div>
+        </div>
+        <div class="service-body">
+          <p class="service-desc">When a breach occurs, every hour of dwell time costs you. Our incident response team deploys within two hours — physically or remotely — to contain the threat, preserve evidence, eradicate the attacker, and restore operations. We've responded to over 400 incidents without a single failed recovery.</p>
+          <div class="service-features">
+            <div class="feature-item">2-hour emergency deployment SLA</div>
+            <div class="feature-item">Digital forensics and evidence preservation</div>
+            <div class="feature-item">Malware analysis and reverse engineering</div>
+            <div class="feature-item">Attacker eviction and remediation</div>
+            <div class="feature-item">Legal and regulatory breach notification support</div>
+            <div class="feature-item">Post-incident resilience review</div>
+          </div>
+          <div class="service-tags"><span class="stag">DFIR</span><span class="stag">Forensics</span><span class="stag">Malware RE</span><span class="stag">Retainer</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- PRICING -->
+  <div class="section">
+    <p class="eyebrow">Pricing</p>
+    <h2 class="section-h">TRANSPARENT. <span class="accent-c">SCALABLE.</span> ZERO SURPRISES.</h2>
+    <div class="pricing-grid">
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">Tier 01</div>
+        <div class="pricing-name">GUARDIAN</div>
+        <div class="pricing-price">$4,800</div>
+        <div class="pricing-period">/ month</div>
+        <ul class="pricing-features">
+          <li>SOC monitoring (business hours)</li>
+          <li>Annual penetration test</li>
+          <li>Threat intelligence feed</li>
+          <li>Compliance gap assessment</li>
+          <li class="off">Red team engagement</li>
+          <li class="off">24/7 incident response retainer</li>
+        </ul>
+        <a href="contact.html" class="btn btn-cyan" style="width:100%;justify-content:center;">&gt; Get Started</a>
+      </div>
+      <div class="pricing-card featured reveal">
+        <div class="pricing-tier">Tier 02</div>
+        <div class="pricing-name">SENTINEL</div>
+        <div class="pricing-price">$12,500</div>
+        <div class="pricing-period">/ month</div>
+        <ul class="pricing-features">
+          <li>24/7 SOC monitoring</li>
+          <li>Quarterly penetration tests</li>
+          <li>Full threat intelligence suite</li>
+          <li>Compliance management</li>
+          <li>Annual red team engagement</li>
+          <li class="off">24/7 incident response retainer</li>
+        </ul>
+        <a href="contact.html" class="btn btn-red" style="width:100%;justify-content:center;">&gt; Get Started</a>
+      </div>
+      <div class="pricing-card reveal">
+        <div class="pricing-tier">Tier 03</div>
+        <div class="pricing-name">FORTRESS</div>
+        <div class="pricing-price">Custom</div>
+        <div class="pricing-period">Enterprise pricing</div>
+        <ul class="pricing-features">
+          <li>24/7 SOC with dedicated analysts</li>
+          <li>Monthly penetration testing</li>
+          <li>Custom threat intelligence</li>
+          <li>Full compliance program management</li>
+          <li>Quarterly red team operations</li>
+          <li>24/7 incident response retainer</li>
+        </ul>
+        <a href="contact.html" class="btn btn-cyan" style="width:100%;justify-content:center;">&gt; Contact Us</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><div class="footer-brand">SENTINEL<span>ARC</span></div><p class="footer-tagline">Enterprise cybersecurity operations.<br>Threat detection, response, and resilience<br>for organizations that cannot afford to fail.</p></div>
+  <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:ops@sentinelarc.io">ops@sentinelarc.io</a></li><li><a href="#">+1 (800) SENTINEL</a></li><li><a href="#">Emergency Hotline: 24/7</a></li></ul></div>
+</footer>
+<div class="footer-bottom"><p>© 2026 SentinelArc Security Inc. All rights reserved.</p><p>Built by <a href="https://identharos.gumroad.com">Tharos Digital Studio</a></p></div>
+<script src="_shared.js"></script>
+</body>
+</html>

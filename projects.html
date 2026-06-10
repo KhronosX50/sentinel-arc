@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Case Studies — SentinelArc</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.page-hero{padding:5rem 3rem 4rem;border-bottom:1px solid var(--border-c);}
+.page-hero-inner{max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;}
+.page-subtitle{font-family:'Courier Prime',monospace;font-size:1rem;line-height:1.85;color:var(--dim);max-width:580px;margin-top:1.5rem;}
+
+.case-list{display:flex;flex-direction:column;gap:2px;background:var(--border-c);}
+.case-study{background:var(--surface);overflow:hidden;transition:background .3s;}
+.case-study:hover{background:rgba(8,13,18,.9);}
+.case-header{padding:2.5rem 3rem;border-bottom:1px solid var(--border-c);display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;}
+.case-meta{display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap;}
+.case-num{font-family:'Orbitron',monospace;font-size:3rem;font-weight:900;color:rgba(255,31,31,.15);line-height:1;}
+.case-industry{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--glow-c);margin-bottom:.4rem;}
+.case-name{font-family:'Orbitron',monospace;font-size:1.4rem;font-weight:700;color:var(--white);letter-spacing:.04em;}
+.case-badges{display:flex;gap:.5rem;flex-wrap:wrap;}
+.case-badge{font-size:.55rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .6rem;border:1px solid var(--border-r);color:var(--red);}
+.case-body{display:grid;grid-template-columns:1fr 320px;gap:0;}
+.case-content{padding:2.5rem 3rem;border-right:1px solid var(--border-c);}
+.case-section-title{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);margin-bottom:.8rem;margin-top:1.8rem;}
+.case-section-title:first-child{margin-top:0;}
+.case-text{font-family:'Courier Prime',monospace;font-size:.88rem;line-height:1.85;color:rgba(232,244,248,.65);}
+.case-sidebar{padding:2.5rem 2rem;display:flex;flex-direction:column;gap:1.5rem;}
+.metric-card{background:var(--panel);border:1px solid var(--border-c);padding:1.2rem;text-align:center;}
+.metric-val{font-family:'Orbitron',monospace;font-size:2rem;font-weight:900;line-height:1;margin-bottom:.3rem;}
+.metric-val.r{color:var(--red);text-shadow:var(--glow-r);}
+.metric-val.c{color:var(--cyan);text-shadow:var(--glow-c);}
+.metric-val.g{color:var(--green);text-shadow:var(--glow-g);}
+.metric-label{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);}
+.case-result-tag{display:inline-flex;align-items:center;gap:.4rem;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);text-shadow:var(--glow-g);}
+.case-result-tag::before{content:'[✓]';color:var(--green);}
+
+@media(max-width:900px){
+  .page-hero{padding:4rem 1.5rem 3rem;}
+  .case-header{grid-template-columns:1fr;padding:2rem 1.5rem;}
+  .case-body{grid-template-columns:1fr;}
+  .case-content{border-right:none;border-bottom:1px solid var(--border-c);padding:2rem 1.5rem;}
+  .case-sidebar{padding:2rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+}
+</style>
+</head>
+<body>
+<div id="ticker"></div>
+<div id="cursor"><div id="cursor-h"></div><div id="cursor-v"></div></div>
+<nav>
+  <a class="nav-logo" href="index.html">SENTINEL<span>ARC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html" class="active">Case Studies</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">&gt; Get Protected</a>
+  <button class="nav-toggle">[MENU]</button>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Case Studies</p>
+      <h1 class="page-title">REAL THREATS.<br><span class="accent-r">REAL RESULTS.</span></h1>
+      <p class="page-subtitle">Three engagements from our portfolio — names redacted per client NDAs. Every metric is real. Every outcome was verified by independent third parties.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="case-list">
+
+      <!-- CASE 1 -->
+      <div class="case-study reveal">
+        <div class="case-header">
+          <div class="case-meta">
+            <div class="case-num">01</div>
+            <div>
+              <div class="case-industry">Financial Services · Global Bank</div>
+              <div class="case-name">OPERATION IRON VAULT</div>
+            </div>
+          </div>
+          <div class="case-badges"><span class="case-badge">Red Team</span><span class="case-badge">Pen Test</span><span class="case-badge">Incident Response</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-content">
+            <div class="case-section-title">// THE SITUATION</div>
+            <p class="case-text">A top-20 global bank with $2.3 trillion in assets under management had experienced an undetected intrusion lasting 47 days before being discovered by a routine audit. The attacker — later attributed to a state-sponsored APT group — had exfiltrated 14GB of customer data and embedded persistent access across 23 servers in three data centers across two continents.</p>
+            <div class="case-section-title">// OUR APPROACH</div>
+            <p class="case-text">SentinelArc was engaged within four hours of breach discovery. We deployed an eight-analyst DFIR team across London and Singapore simultaneously, with remote access to all three affected data centers. Within 18 hours we had full forensic timelines for all 23 compromised hosts, identified the initial access vector (a spear-phishing email targeting a third-party vendor with privileged network access), and mapped the complete attacker kill chain using MITRE ATT&CK framework.</p>
+            <p class="case-text">After complete attacker eviction and a 72-hour containment operation, we transitioned to a full red team engagement to test whether any additional persistence mechanisms remained — and to harden the systems against the specific TTPs used in the original intrusion.</p>
+            <div class="case-section-title">// THE OUTCOME</div>
+            <p class="case-text">Full attacker eviction achieved within 72 hours. Zero additional data exfiltration after our deployment. Regulatory breach notification filed within the required window. Post-remediation red team found zero residual persistence. The bank subsequently engaged SentinelArc for a long-term SOC-as-a-Service retainer.</p>
+            <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.8rem;">
+              <span class="case-result-tag">Attacker Evicted in 72hrs</span>
+              <span class="case-result-tag">Zero Further Exfiltration</span>
+              <span class="case-result-tag">Full Kill Chain Mapped</span>
+            </div>
+          </div>
+          <div class="case-sidebar">
+            <div class="metric-card"><div class="metric-val r">72h</div><div class="metric-label">Time to Eviction</div></div>
+            <div class="metric-card"><div class="metric-val c">23</div><div class="metric-label">Hosts Remediated</div></div>
+            <div class="metric-card"><div class="metric-val g">0</div><div class="metric-label">Breaches Since</div></div>
+            <div class="metric-card"><div class="metric-val">$2.3T</div><div class="metric-label">Assets Protected</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 2 -->
+      <div class="case-study reveal">
+        <div class="case-header">
+          <div class="case-meta">
+            <div class="case-num">02</div>
+            <div>
+              <div class="case-industry">Critical Infrastructure · Energy Sector</div>
+              <div class="case-name">OPERATION GRID SHIELD</div>
+            </div>
+          </div>
+          <div class="case-badges"><span class="case-badge">OT/ICS Security</span><span class="case-badge">Threat Intel</span><span class="case-badge">SOC</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-content">
+            <div class="case-section-title">// THE SITUATION</div>
+            <p class="case-text">A national grid operator responsible for electricity distribution to 4.2 million households received credible threat intelligence indicating a coordinated attack campaign targeting their operational technology (OT) environment. Intelligence suggested the threat actor had already achieved initial foothold in the IT network and was staging for lateral movement into ICS/SCADA systems controlling physical grid infrastructure.</p>
+            <div class="case-section-title">// OUR APPROACH</div>
+            <p class="case-text">We deployed our OT/ICS security specialists alongside our threat intelligence team in a joint operation. The priority was clear: prevent any crossing of the IT/OT boundary before the attacker could achieve their objective. We implemented emergency network segmentation, deployed OT-specific monitoring sensors across 140 substations, and ran continuous threat hunting operations across 96 hours without interruption to grid operations.</p>
+            <p class="case-text">Simultaneously, our threat intelligence unit performed deep attribution analysis on the campaign, identifying the threat actor as a known APT group with prior attacks on European energy infrastructure. This intelligence allowed us to anticipate their next moves and pre-position defensive measures before the attack progressed.</p>
+            <div class="case-section-title">// THE OUTCOME</div>
+            <p class="case-text">The IT/OT boundary was held. No SCADA systems were reached. The attacker was fully evicted from the IT network within 96 hours. Grid operations continued without a single minute of downtime throughout the engagement. The client subsequently published a case study (with our details redacted) that was cited by the national cybersecurity agency.</p>
+            <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.8rem;">
+              <span class="case-result-tag">OT Boundary Held</span>
+              <span class="case-result-tag">Zero Grid Downtime</span>
+              <span class="case-result-tag">APT Attributed &amp; Evicted</span>
+            </div>
+          </div>
+          <div class="case-sidebar">
+            <div class="metric-card"><div class="metric-val r">140</div><div class="metric-label">Substations Secured</div></div>
+            <div class="metric-card"><div class="metric-val c">96h</div><div class="metric-label">Continuous Operation</div></div>
+            <div class="metric-card"><div class="metric-val g">4.2M</div><div class="metric-label">Households Protected</div></div>
+            <div class="metric-card"><div class="metric-val">0min</div><div class="metric-label">Grid Downtime</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CASE 3 -->
+      <div class="case-study reveal">
+        <div class="case-header">
+          <div class="case-meta">
+            <div class="case-num">03</div>
+            <div>
+              <div class="case-industry">Healthcare · Hospital Network</div>
+              <div class="case-name">OPERATION WHITE CELL</div>
+            </div>
+          </div>
+          <div class="case-badges"><span class="case-badge">Ransomware Response</span><span class="case-badge">HIPAA Compliance</span><span class="case-badge">SOC Buildout</span></div>
+        </div>
+        <div class="case-body">
+          <div class="case-content">
+            <div class="case-section-title">// THE SITUATION</div>
+            <p class="case-text">A 12-hospital network serving 800,000 patients annually was hit by a ransomware attack at 3:17 AM on a Tuesday. By the time IT staff discovered the encryption underway, 40% of networked systems were already locked. Electronic health records were inaccessible. Surgical scheduling systems were down. Two hospitals had reverted to pen-and-paper operations. Patient safety was at immediate risk.</p>
+            <div class="case-section-title">// OUR APPROACH</div>
+            <p class="case-text">SentinelArc's incident response retainer triggered an immediate response. Our team was on a call with the hospital CIO within 11 minutes and had remote access to all affected systems within 40 minutes. We triaged the infection to identify the boundary of encryption, isolated clean systems to preserve EHR access for critical care units, and began decryption key recovery operations from backup infrastructure the ransomware operators had failed to reach.</p>
+            <p class="case-text">Critically, we identified and preserved evidence sufficient for law enforcement attribution before beginning remediation — a step many incident responders skip in the rush to restore operations. HIPAA breach notification requirements were met within the required 60-day window, with our legal team supporting the drafting process.</p>
+            <div class="case-section-title">// THE OUTCOME</div>
+            <p class="case-text">Critical care EHR access was restored within 6 hours. Full network restoration was completed within 11 days — well within the 30-day window that typically triggers regulatory penalties. No ransom was paid. The hospital network subsequently engaged SentinelArc to build and operate a full SOC, and achieved HIPAA compliance certification 8 months after the incident.</p>
+            <div style="margin-top:1.5rem;display:flex;flex-wrap:wrap;gap:.8rem;">
+              <span class="case-result-tag">EHR Restored in 6hrs</span>
+              <span class="case-result-tag">Zero Ransom Paid</span>
+              <span class="case-result-tag">HIPAA Certified</span>
+            </div>
+          </div>
+          <div class="case-sidebar">
+            <div class="metric-card"><div class="metric-val r">11min</div><div class="metric-label">Initial Response</div></div>
+            <div class="metric-card"><div class="metric-val c">6h</div><div class="metric-label">Critical Care Restored</div></div>
+            <div class="metric-card"><div class="metric-val g">$0</div><div class="metric-label">Ransom Paid</div></div>
+            <div class="metric-card"><div class="metric-val">11d</div><div class="metric-label">Full Recovery</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><div class="footer-brand">SENTINEL<span>ARC</span></div><p class="footer-tagline">Enterprise cybersecurity operations.<br>Threat detection, response, and resilience<br>for organizations that cannot afford to fail.</p></div>
+  <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:ops@sentinelarc.io">ops@sentinelarc.io</a></li><li><a href="#">+1 (800) SENTINEL</a></li><li><a href="#">Emergency Hotline: 24/7</a></li></ul></div>
+</footer>
+<div class="footer-bottom"><p>© 2026 SentinelArc Security Inc. All rights reserved.</p><p>Built by <a href="https://identharos.gumroad.com">Tharos Digital Studio</a></p></div>
+<script src="_shared.js"></script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Contact — SentinelArc</title>
+<link rel="stylesheet" href="_shared.css">
+<style>
+.page-hero{padding:5rem 3rem 4rem;border-bottom:1px solid var(--border-c);}
+.page-hero-inner{max-width:1200px;margin:0 auto;}
+.page-title{font-family:'Orbitron',monospace;font-size:clamp(2.5rem,6vw,5rem);font-weight:900;line-height:1.05;}
+.page-subtitle{font-family:'Courier Prime',monospace;font-size:1rem;line-height:1.85;color:var(--dim);max-width:580px;margin-top:1.5rem;}
+
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:1.2rem;}
+.contact-intro{font-family:'Courier Prime',monospace;font-size:.9rem;line-height:1.85;color:rgba(232,244,248,.65);margin-bottom:.5rem;}
+
+.contact-item{display:flex;align-items:center;gap:1.2rem;padding:1.2rem 1.5rem;border:1px solid var(--border-c);background:var(--surface);transition:border-color .3s,background .3s;}
+.contact-item:hover{border-color:var(--border-r);background:rgba(255,31,31,.03);}
+.contact-icon{font-family:'Orbitron',monospace;font-size:1rem;min-width:2.5rem;text-align:center;}
+.contact-icon.r{color:var(--red);text-shadow:var(--glow-r);}
+.contact-icon.c{color:var(--cyan);text-shadow:var(--glow-c);}
+.contact-icon.g{color:var(--green);text-shadow:var(--glow-g);}
+.contact-detail{}
+.contact-label{font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:.2rem;}
+.contact-val{font-size:.78rem;color:var(--white);}
+.contact-val a{color:var(--white);text-decoration:none;transition:color .2s;}
+.contact-val a:hover{color:var(--red);}
+
+.emergency-box{background:var(--surface);border:1px solid var(--border-r);box-shadow:var(--glow-r);padding:2rem;margin-top:.5rem;}
+.emergency-title{font-family:'Orbitron',monospace;font-size:.8rem;font-weight:700;color:var(--red);text-shadow:var(--glow-r);letter-spacing:.08em;margin-bottom:.5rem;animation:textFlicker 2s infinite;}
+.emergency-number{font-family:'Orbitron',monospace;font-size:1.6rem;font-weight:900;color:var(--white);letter-spacing:.05em;margin-bottom:.5rem;}
+.emergency-desc{font-size:.7rem;line-height:1.7;color:var(--dim);}
+
+.contact-form{background:var(--surface);border:1px solid var(--border-c);padding:3rem;}
+.form-title{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:var(--white);letter-spacing:.08em;margin-bottom:.4rem;}
+.form-sub{font-size:.7rem;color:var(--dim);margin-bottom:2rem;}
+.form-field{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1.2rem;}
+.form-field label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--cyan);text-shadow:var(--glow-c);}
+.form-field label::before{content:'> ';color:var(--dim);}
+.form-field input,.form-field textarea,.form-field select{background:rgba(255,255,255,.03);border:1px solid var(--border-c);color:var(--white);font-family:'Share Tech Mono',monospace;font-size:.8rem;padding:.85rem 1rem;outline:none;transition:border-color .3s,box-shadow .3s;border-radius:0;-webkit-appearance:none;}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--red);box-shadow:0 0 10px rgba(255,31,31,.15);}
+.form-field input::placeholder,.form-field textarea::placeholder{color:var(--dim);}
+.form-field textarea{resize:vertical;min-height:130px;}
+.form-field select{color:var(--dim);}
+.form-field select option{background:#080d12;color:var(--white);}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.office-card{background:var(--surface);border:1px solid var(--border-c);padding:1.8rem 1.5rem;transition:border-color .3s;}
+.office-card:hover{border-color:var(--border-r);}
+.office-city{font-family:'Orbitron',monospace;font-size:.9rem;font-weight:700;color:var(--white);margin-bottom:.3rem;letter-spacing:.06em;}
+.office-region{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);margin-bottom:.8rem;}
+.office-address{font-size:.7rem;line-height:1.75;color:var(--dim);}
+.office-type{display:inline-flex;align-items:center;gap:.4rem;font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--green);margin-top:.8rem;}
+.office-type::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--green);box-shadow:var(--glow-g);animation:blink 1s step-end infinite;}
+
+@media(max-width:900px){
+  .page-hero{padding:4rem 1.5rem 3rem;}
+  .contact-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .offices{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+<div id="ticker"></div>
+<div id="cursor"><div id="cursor-h"></div><div id="cursor-v"></div></div>
+<nav>
+  <a class="nav-logo" href="index.html">SENTINEL<span>ARC</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="projects.html">Case Studies</a></li>
+    <li><a href="contact.html" class="active">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">&gt; Get Protected</a>
+  <button class="nav-toggle">[MENU]</button>
+</nav>
+
+<div class="page-wrap">
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <p class="eyebrow">Contact</p>
+      <h1 class="page-title">INITIATE <span class="accent-r">CONTACT.</span><br>GET <span class="accent-c">PROTECTED.</span></h1>
+      <p class="page-subtitle">Every engagement starts with a conversation. Tell us about your organization and threat environment — we'll respond within four business hours.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <p class="contact-intro">Whether you need an emergency incident response, a penetration test scoped for next quarter, or a long-term managed security partnership — start here. Our team will assess your situation and recommend the right engagement model.</p>
+
+        <div class="contact-item">
+          <div class="contact-icon r">[✉]</div>
+          <div class="contact-detail"><div class="contact-label">General Enquiries</div><div class="contact-val"><a href="mailto:ops@sentinelarc.io">ops@sentinelarc.io</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon r">[⚠]</div>
+          <div class="contact-detail"><div class="contact-label">Security Incidents</div><div class="contact-val"><a href="mailto:ir@sentinelarc.io">ir@sentinelarc.io</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon c">[◎]</div>
+          <div class="contact-detail"><div class="contact-label">Sales &amp; Partnerships</div><div class="contact-val"><a href="mailto:sales@sentinelarc.io">sales@sentinelarc.io</a></div></div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon g">[#]</div>
+          <div class="contact-detail"><div class="contact-label">Response Time SLA</div><div class="contact-val" style="color:var(--green);text-shadow:var(--glow-g);">4 hours · Incidents: immediate</div></div>
+        </div>
+
+        <div class="emergency-box">
+          <div class="emergency-title">⚠ ACTIVE INCIDENT HOTLINE</div>
+          <div class="emergency-number">+1 (800) SENTINEL</div>
+          <p class="emergency-desc">Active breach or ransomware attack? Call this number now. Our incident response team answers 24 hours a day, 365 days a year. Average pickup time: under 3 rings.</p>
+        </div>
+      </div>
+
+      <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+        <div class="form-title">REQUEST AN ASSESSMENT</div>
+        <p class="form-sub">// Fill in the details below. All submissions are encrypted and handled under strict NDA.</p>
+        <div class="form-row">
+          <div class="form-field"><label>First Name</label><input type="text" placeholder="Marcus" required></div>
+          <div class="form-field"><label>Last Name</label><input type="text" placeholder="Reed" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-field"><label>Email</label><input type="email" placeholder="m.reed@company.com" required></div>
+          <div class="form-field"><label>Phone</label><input type="tel" placeholder="+1 (555) 000-0000"></div>
+        </div>
+        <div class="form-field"><label>Organization</label><input type="text" placeholder="Company name" required></div>
+        <div class="form-field">
+          <label>Service Required</label>
+          <select required>
+            <option value="" disabled selected>Select a service...</option>
+            <option>Penetration Testing</option>
+            <option>Red Team Operation</option>
+            <option>SOC as a Service</option>
+            <option>Threat Intelligence</option>
+            <option>Compliance Auditing</option>
+            <option>Incident Response (Active)</option>
+            <option>General Security Assessment</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>Describe Your Situation</label>
+          <textarea placeholder="Tell us about your environment, current security posture, and what you're trying to achieve or resolve..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;">&gt; SUBMIT SECURE REQUEST</button>
+      </form>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- OFFICES -->
+  <div class="section">
+    <p class="eyebrow">Global Presence</p>
+    <h2 class="section-h">DEPLOYED <span class="accent-c">WORLDWIDE</span></h2>
+    <div class="offices">
+      <div class="office-card reveal">
+        <div class="office-city">WASHINGTON D.C.</div>
+        <div class="office-region">Americas · HQ</div>
+        <p class="office-address">1200 K Street NW, Suite 800<br>Washington, DC 20005<br>United States</p>
+        <div class="office-type">Global Headquarters</div>
+      </div>
+      <div class="office-card reveal">
+        <div class="office-city">LONDON</div>
+        <div class="office-region">EMEA Hub</div>
+        <p class="office-address">30 St Mary Axe, 14th Floor<br>London, EC3A 8BF<br>United Kingdom</p>
+        <div class="office-type">Regional Operations Center</div>
+      </div>
+      <div class="office-card reveal">
+        <div class="office-city">SINGAPORE</div>
+        <div class="office-region">APAC Hub</div>
+        <p class="office-address">1 Raffles Place, Tower 2<br>Singapore, 048616</p>
+        <div class="office-type">Regional Operations Center</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div><div class="footer-brand">SENTINEL<span>ARC</span></div><p class="footer-tagline">Enterprise cybersecurity operations.<br>Threat detection, response, and resilience<br>for organizations that cannot afford to fail.</p></div>
+  <div><div class="footer-col-title">Navigation</div><ul class="footer-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="projects.html">Case Studies</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+  <div><div class="footer-col-title">Contact</div><ul class="footer-links"><li><a href="mailto:ops@sentinelarc.io">ops@sentinelarc.io</a></li><li><a href="#">+1 (800) SENTINEL</a></li><li><a href="#">Emergency Hotline: 24/7</a></li></ul></div>
+</footer>
+<div class="footer-bottom"><p>© 2026 SentinelArc Security Inc. All rights reserved.</p><p>Built by <a href="https://identharos.gumroad.com">Tharos Digital Studio</a></p></div>
+
+<script src="_shared.js"></script>
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  btn.textContent = '> REQUEST RECEIVED [ENCRYPTED] [OK]';
+  btn.style.color = 'var(--green)';
+  btn.style.borderColor = 'var(--green)';
+  btn.style.boxShadow = 'var(--glow-g)';
+  setTimeout(() => {
+    e.target.reset();
+    btn.textContent = '> SUBMIT SECURE REQUEST';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+    btn.style.boxShadow = '';
+  }, 4000);
+}
+</script>
+</body>
+</html>
